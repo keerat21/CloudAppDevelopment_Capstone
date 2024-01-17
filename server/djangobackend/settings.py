@@ -29,12 +29,13 @@ APPEND_SLASH = True
 
 ALLOWED_HOSTS = ['localhost','<Your app URL>']
 
-CSRF_TRUSTED_ORIGINS = ['<Your app URL>']
+CSRF_TRUSTED_ORIGINS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'djangoapp.apps.DjangoappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
