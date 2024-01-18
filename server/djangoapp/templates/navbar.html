@@ -8,34 +8,51 @@
     <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#" style="color:white">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'djangoapp:index' %}" style="color:white">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" >
                     <a class="nav-link active" aria-current="page" style="color:white" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" style="color:white">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="about" style="color:white">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact" style="color:white">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'djangoapp:aboutt' %}" style="color:white">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'djangoapp:contact' %}" style="color:white">Contact Us</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link disabled" style="">Disabled</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-          <sty>
+                </li>
+            </ul>
+            {% if is_index %}
+            <form class="form-inline my-2 my-lg-0"  method="post" action="/login/">
+                <input class="form-control mr-sm-2" type="search" placeholder="username" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="password" aria-label="Search">
+                <button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button>
+            </form>
+                <button onclick="window.location.href='{% url 'djangoapp:register' %}'" class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Sign Up</button>
+
+            
+            {% endif %}
+            {% if is_authenticated %}
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn btn-success my-2 my-sm-0" type="submit"></button>
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Logout</button>
+
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
