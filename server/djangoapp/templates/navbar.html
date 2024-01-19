@@ -36,23 +36,23 @@
                     <a class="nav-link disabled" style="">Disabled</a>
                 </li>
             </ul>
-            {% if is_index %}
-            <form class="form-inline my-2 my-lg-0"  method="post" action="/login/">
-                <input class="form-control mr-sm-2" type="search" placeholder="username" aria-label="Search">
-                <input class="form-control mr-sm-2" type="search" placeholder="password" aria-label="Search">
+            {% if is_index and not user.is_authenticated %}
+            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'djangoapp:login' %}">
+                <input class="form-control mr-sm-2" type="text" placeholder="username" aria-label="Search" name="username">
+                <input class="form-control mr-sm-2" type="password" placeholder="password" aria-label="Search" name="password">
                 <button class="btn btn btn-success my-2 my-sm-0" type="submit">Login</button>
             </form>
-                <button onclick="window.location.href='{% url 'djangoapp:register' %}'" class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Sign Up</button>
-
-            
-            {% endif %}
-            {% if is_authenticated %}
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn btn-success my-2 my-sm-0" type="submit"></button>
-                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Logout</button>
-
+            <form method="get" action="{% url 'djangoapp:register' %}">
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Sign Up</button>
             </form>
-            {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'djangoapp:logout' %}">
+                {% csrf_token %}
+                <span class="btn btn btn-success my-2 my-sm-0">{{ user.username }}</span>
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:5px" type="submit">Logout</button>
+            </form>
+        {% endif %}
         </div>
     </div>
 </nav>
