@@ -8,6 +8,12 @@ from cloudant.error import CloudantException
 import requests
 
 
+param_dict = {
+    "COUCH_URL": "https://f19604d8-0e51-42b7-89d0-960ab5ae6cb5-bluemix.cloudantnosqldb.appdomain.cloud",
+    "IAM_API_KEY": "4H6r5yLf063cqa_eV72hBToLVPfyW40o6wGs7__0Mxq6",
+    "COUCH_USERNAME": "f19604d8-0e51-42b7-89d0-960ab5ae6cb5-bluemix"
+}
+
 def main(param_dict):
     """Main Function
 
@@ -32,4 +38,7 @@ def main(param_dict):
         print("connection error")
         return {"error": err}
 
-    return {"dbs": client.all_dbs()}
+    return print({"dbs": client.all_dbs()})
+
+
+main(param_dict)

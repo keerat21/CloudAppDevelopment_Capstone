@@ -7,7 +7,7 @@ ADD server.js .
 
 
 RUN npm install
-
+# Set the environment variables
 EXPOSE 3000
 
 CMD [ "npm", "start" ]

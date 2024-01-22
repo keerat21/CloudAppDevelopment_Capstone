@@ -1,0 +1,9 @@
+apiVersion: codeengine.cloud.ibm.com/v1alpha1
+kind: Application
+metadata:
+  name: dealership
+spec:
+  template:
+    name: dealership
+    container:
+      image: us.icr.io/sn-labs-keerattanwar/dealerships
